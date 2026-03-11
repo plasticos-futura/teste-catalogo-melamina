@@ -4,7 +4,7 @@
 <head>
 
 <meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="viewport" content="width=device-width, initial-scale=1">
 
 <title>Melamina Catalogue</title>
 
@@ -14,38 +14,43 @@
 
 body{
 margin:0;
-background:#1a1a1a;
-font-family:Arial;
-overflow:hidden;
+background:#d6d6d6;
+font-family:Arial, Helvetica, sans-serif;
+display:flex;
+flex-direction:column;
+align-items:center;
+justify-content:center;
+height:100vh;
 }
 
-#topbar{
+#controls{
 position:fixed;
-top:10px;
+top:15px;
 left:50%;
 transform:translateX(-50%);
 z-index:1000;
 }
 
 button{
-padding:8px 14px;
-margin:3px;
-border:none;
 background:#2c7be5;
 color:white;
+border:none;
+padding:8px 14px;
+margin:4px;
 border-radius:4px;
 cursor:pointer;
 font-size:14px;
 }
 
-#container{
+#book-container{
 display:flex;
-justify-content:center;
 align-items:center;
-height:100vh;
+justify-content:center;
+width:100%;
+height:100%;
 }
 
-#book{
+#flipbook{
 width:1000px;
 height:700px;
 }
@@ -66,7 +71,7 @@ object-fit:contain;
 
 <body>
 
-<div id="topbar">
+<div id="controls">
 
 <button onclick="prevPage()">◀</button>
 <button onclick="nextPage()">▶</button>
@@ -78,9 +83,9 @@ object-fit:contain;
 
 </div>
 
-<div id="container">
+<div id="book-container">
 
-<div id="book"></div>
+<div id="flipbook"></div>
 
 </div>
 
@@ -116,7 +121,7 @@ const pages = [
 ];
 
 const pageFlip = new St.PageFlip(
-document.getElementById("book"),
+document.getElementById("flipbook"),
 {
 width:500,
 height:700,
@@ -125,7 +130,6 @@ minWidth:300,
 maxWidth:1000,
 minHeight:400,
 maxHeight:1200,
-maxShadowOpacity:0.5,
 showCover:true,
 mobileScrollSupport:true
 }
@@ -145,12 +149,12 @@ let zoom=1;
 
 function zoomIn(){
 zoom+=0.1;
-document.getElementById("book").style.transform="scale("+zoom+")";
+document.getElementById("flipbook").style.transform="scale("+zoom+")";
 }
 
 function zoomOut(){
 zoom-=0.1;
-document.getElementById("book").style.transform="scale("+zoom+")";
+document.getElementById("flipbook").style.transform="scale("+zoom+")";
 }
 
 function toggleFullscreen(){
